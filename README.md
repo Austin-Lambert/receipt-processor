@@ -6,12 +6,15 @@ To use this receipt-processor service, ensure you have Go installed, and  follow
 
 1. **Start the Server:**
    - Run the server by executing the `main.go` file. This will initialize the server and start it on port 8080.
-   ```
-   go run main.go
-   ```
+        ```
+        go run main.go
+        ```
 
 2. **Submit a Receipt:**
-   - Use a `POST` request to submit a receipt for processing. The endpoint is `/receipts/process`.
+   - Use a `POST` request to submit a receipt for processing. The endpoint is:
+        ```
+        /receipts/process
+        ```
    - The request body should contain a JSON object representing the receipt with the following structure:
      ```json
      {
@@ -48,8 +51,17 @@ To use this receipt-processor service, ensure you have Go installed, and  follow
      ```
 
 3. **Retrieve Receipt Points:**
-   - Use a `GET` request to obtain the points for a submitted receipt. The endpoint is `/receipts/{id}/points`, where `{id}` is a UUID returned from the submit receipt endpoint.
-   - Example using `curl`:
-     ```
-     curl http://localhost:8080/receipts/{id}/points
-     ```
+   - Use a `GET` request to obtain the points for a submitted receipt. The endpoint is below, replace `{id}` with the UUID returned from the submit receipt endpoint. 
+        ```
+        /receipts/{id}/points
+        ```
+    - Example using `curl`:
+        ```
+        curl http://localhost:8080/receipts/{id}/points
+        ```
+
+## Considerations
+- This Project has no database, so receipts are stored in memory, thus they are not persisted across application runs.
+- I'm not super familiar with Go in general so some parts of the code may not be idiomatic Go.
+- Since this is a quick single-person project I did not make use of source control the way I would in an enterprise environment.
+- It was a fun challenge that served as a way for me to learn Go!
